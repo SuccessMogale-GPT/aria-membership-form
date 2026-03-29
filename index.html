@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARIA Membership Application 2026/2027</title>
+<style>
+:root {
+  --green:      #004225;
+  --green-mid:  #2E5C40;
+  --green-lite: #4A7C6E;
+  --bg:         #F9F8F4;
+  --white:      #FFFFFF;
+  --text:       #1E3A2F;
+  --mid:        #4A7C6E;
+  --div:        #E8E6E1;
+  --border:     #D8D5CF;
+  --red:        #8B1A1A;
+  --gold:       #C9A84C;
+  --font:       'Gill Sans MT', 'Gill Sans', Calibri, Arial, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; font-weight: 400; }
+.page-wrapper { max-width: 860px; margin: 40px auto 80px; background: var(--white); border: 0.75px solid var(--div); }
+.form-header { padding: 36px 48px 28px; border-bottom: 0.75px solid var(--green); display: flex; align-items: flex-start; gap: 28px; background: var(--white); }
+.header-logo { width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.header-logo svg { width: 100%; height: 100%; }
+.header-text h1 { color: var(--green); font-size: 22px; font-weight: 400; letter-spacing: 0.3px; margin-bottom: 4px; }
+.header-text h2 { color: var(--green-mid); font-size: 14px; font-weight: 400; }
+.header-text p { color: var(--mid); font-size: 12px; margin-top: 4px; }
+.progress-nav { background: var(--white); border-bottom: 0.75px solid var(--div); padding: 0 48px; display: flex; overflow-x: auto; }
+.progress-nav a { text-decoration: none; color: var(--mid); font-size: 12px; font-weight: 400; padding: 12px 14px; border-bottom: 1.5px solid transparent; white-space: nowrap; transition: all 0.2s; }
+.progress-nav a:hover, .progress-nav a.active { color: var(--green); border-bottom-color: var(--green); }
+.eligibility-banner { padding: 14px 48px; border-bottom: 0.75px solid var(--div); font-size: 13px; color: var(--green-mid); background: var(--bg); }
+.eligibility-banner strong { color: var(--green); font-weight: 400; }
+.fee-section { padding: 28px 48px; border-bottom: 0.75px solid var(--div); }
+.fee-section h3 { font-size: 13px; font-weight: 400; letter-spacing: 1.2px; text-transform: uppercase; color: var(--green); margin-bottom: 4px; }
+.fee-note { font-size: 12px; color: var(--mid); font-style: italic; margin-bottom: 14px; }
+.fee-table { width: 100%; border-collapse: collapse; }
+.fee-table thead tr { border-bottom: 0.75px solid var(--green); }
+.fee-table thead th { color: var(--green); padding: 9px 12px; text-align: left; font-size: 12px; font-weight: 400; letter-spacing: 0.8px; text-transform: uppercase; }
+.fee-table tbody tr { border-bottom: 0.5px solid var(--div); }
+.fee-table tbody tr:last-child { border-bottom: none; }
+.fee-table tbody td { padding: 9px 12px; font-size: 13.5px; }
+.fee-table tbody td:nth-child(2) { font-weight: 400; color: var(--green); }
+.fee-table input[type="radio"] { accent-color: var(--green); cursor: pointer; }
+.fee-display { margin-top: 14px; padding: 14px 18px; border-top: 0.75px solid var(--div); font-size: 13.5px; display: none; }
+.fee-display.visible { display: block; }
+.fee-display .vat-line { color: var(--mid); margin-top: 4px; }
+.fee-display .total-line { color: var(--green); font-size: 15px; margin-top: 6px; }
+.form-section { padding: 28px 48px; border-bottom: 0.75px solid var(--div); }
+.section-heading { color: var(--green); font-size: 13px; font-weight: 400; letter-spacing: 1.2px; text-transform: uppercase; margin: -28px -48px 22px; padding: 10px 48px; border-bottom: 0.75px solid var(--div); display: flex; align-items: center; gap: 12px; }
+.section-num { font-size: 12px; color: var(--green-mid); width: 22px; height: 22px; border: 0.75px solid var(--green-mid); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.subsection-label { font-size: 12px; font-weight: 400; color: var(--green); letter-spacing: 0.8px; text-transform: uppercase; border-bottom: 0.75px solid var(--div); padding-bottom: 5px; margin: 22px 0 12px; }
+.subsection-note { font-size: 12px; color: var(--mid); font-style: italic; margin: -8px 0 12px; }
+.field-row { display: grid; grid-template-columns: 200px 1fr; gap: 8px; margin-bottom: 10px; align-items: start; }
+.field-row label { font-size: 13.5px; padding-top: 8px; color: var(--text); font-weight: 400; }
+.field-row label.req::after { content: " *"; color: var(--green); font-size: 11px; }
+.field-row input[type="text"], .field-row input[type="email"], .field-row input[type="tel"], .field-row input[type="url"], .field-row input[type="number"], .field-row input[type="date"], .field-row select, .field-row textarea { width: 100%; padding: 8px 12px; border: none; border-bottom: 0.75px solid var(--border); border-radius: 0; font-family: var(--font); font-size: 13.5px; color: var(--text); background: transparent; transition: border-color 0.2s; }
+.field-row input:focus, .field-row select:focus, .field-row textarea:focus { outline: none; border-bottom-color: var(--green); }
+.field-row select { border: 0.75px solid var(--border); border-radius: 0; background: var(--white); }
+.field-row select:focus { border-color: var(--green); }
+.field-row textarea { min-height: 72px; resize: vertical; border: 0.75px solid var(--border); padding: 8px 12px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+.check-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 4px; margin: 8px 0 14px; }
+.check-grid label { display: flex; align-items: flex-start; gap: 8px; font-size: 13.5px; cursor: pointer; padding: 5px 6px; line-height: 1.5; }
+.check-grid label:hover { color: var(--green); }
+.check-grid input[type="checkbox"], .check-grid input[type="radio"] { accent-color: var(--green); margin-top: 3px; flex-shrink: 0; cursor: pointer; }
+.radio-row { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 8px 0 14px; }
+.radio-row label { display: flex; align-items: center; gap: 7px; font-size: 13.5px; cursor: pointer; }
+.radio-row input[type="radio"] { accent-color: var(--green); cursor: pointer; }
+.conditional { display: none; }
+.conditional.show { display: block; }
+.conditional-inner { border-left: 0.75px solid var(--div); padding: 14px 20px; margin: 6px 0 14px; }
+.contact-card { border-top: 0.75px solid var(--div); padding: 18px 0; margin-bottom: 6px; }
+.contact-card:first-of-type { border-top: none; }
+.contact-card-title { font-size: 12px; font-weight: 400; color: var(--green); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.8px; display: flex; align-items: center; gap: 8px; }
+.contact-badge { font-size: 10px; border: 0.5px solid var(--green); color: var(--green); padding: 1px 7px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; }
+.contact-badge.opt { border-color: var(--mid); color: var(--mid); }
+.declaration-block { background: var(--bg); border: 0.75px solid var(--div); padding: 16px 20px; font-size: 13px; line-height: 1.7; color: var(--text); margin-bottom: 18px; }
+.decl-check { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; cursor: pointer; padding: 10px 0; border-bottom: 0.5px solid var(--div); line-height: 1.6; }
+.decl-check:last-child { border-bottom: none; }
+.decl-check input[type="checkbox"] { accent-color: var(--green); margin-top: 4px; flex-shrink: 0; }
+.doc-item { display: flex; align-items: center; gap: 10px; font-size: 13.5px; cursor: pointer; padding: 8px 0; border-bottom: 0.5px solid var(--div); line-height: 1.5; }
+.doc-item:last-of-type { border-bottom: none; }
+.doc-item input[type="checkbox"] { accent-color: var(--green); flex-shrink: 0; }
+.doc-badge { font-size: 10px; padding: 1px 7px; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 400; border: 0.5px solid var(--mid); color: var(--mid); margin-left: auto; white-space: nowrap; }
+.doc-badge.required { border-color: var(--red); color: var(--red); }
+.policy-panel { border: 0.75px solid var(--div); border-radius: 2px; padding: 18px 22px; margin-bottom: 4px; }
+.policy-panel.busa { border-left: 3px solid var(--green); }
+.policy-panel.bbc { border-left: 3px solid var(--gold); }
+.policy-panel-title { font-size: 12px; font-weight: 400; color: var(--green); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 6px; }
+.policy-panel.bbc .policy-panel-title { color: #8B6914; }
+.policy-panel-desc { font-size: 12px; color: var(--mid); margin-bottom: 10px; font-style: italic; }
+.office-use { border: 0.75px dashed var(--border); padding: 16px 20px; margin-top: 24px; background: var(--bg); }
+.office-use h4 { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--mid); font-weight: 400; margin-bottom: 12px; }
+.office-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 20px; }
+.office-field label { display: block; font-size: 11px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
+.office-field-line { border-bottom: 0.75px solid var(--border); min-height: 22px; }
+.office-status { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--mid); margin-top: 10px; }
+.office-status label { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+.office-status input[type="radio"] { accent-color: var(--green); }
+.submit-row { padding: 24px 48px 28px; border-top: 0.75px solid var(--div); }
+.submit-note { font-size: 12px; color: var(--mid); margin-bottom: 14px; line-height: 1.7; }
+.submit-note a { color: var(--green); }
+.btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn { padding: 12px 28px; font-family: var(--font); font-size: 13.5px; font-weight: 400; letter-spacing: 0.8px; cursor: pointer; border-radius: 0; transition: all 0.2s; }
+.btn-primary { background: var(--green); color: var(--white); border: 0.75px solid var(--green); }
+.btn-primary:hover { background: var(--green-mid); border-color: var(--green-mid); }
+.btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-outline { background: transparent; color: var(--text); border: 0.75px solid var(--border); }
+.btn-outline:hover { border-color: var(--green); color: var(--green); }
+.btn-gold { background: transparent; color: #8B6914; border: 0.75px solid var(--gold); }
+.btn-gold:hover { background: #fdf8ee; }
+.form-footer { padding: 14px 48px; border-top: 0.75px solid var(--div); background: var(--green); color: var(--white); font-size: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.form-footer a { color: var(--gold); text-decoration: none; }
+.form-footer a:hover { text-decoration: underline; }
+.export-table { width: 100%; border-collapse: collapse; margin: 10px 0 18px; font-size: 13px; }
+.export-table thead tr { border-bottom: 0.75px solid var(--green); }
+.export-table thead th { color: var(--green); padding: 7px 8px; text-align: left; font-size: 11px; font-weight: 400; letter-spacing: 0.7px; text-transform: uppercase; }
+.export-table tbody tr { border-bottom: 0.5px solid var(--div); }
+.export-table tbody tr:last-child { border-bottom: none; }
+.export-table tbody td { padding: 6px 8px; }
+.export-table input[type="text"], .export-table input[type="number"] { width: 100%; border: none; border-bottom: 0.75px solid var(--border); font-family: var(--font); font-size: 12.5px; background: transparent; padding: 4px 2px; }
+.export-table select { border: 0.75px solid var(--border); font-family: var(--font); font-size: 12px; background: var(--white); padding: 3px 4px; }
+.error-msg { font-size: 12px; color: var(--red); margin-top: 3px; display: none; }
+.field-error input, .field-error select, .field-error textarea { border-bottom-color: var(--red) !important; }
+.field-error .error-msg { display: block; }
+.challenge-block { border-bottom: 0.75px solid var(--div); margin-bottom: 0; }
+.challenge-header { display: flex; align-items: center; gap: 10px; padding: 10px 0; cursor: pointer; }
+.challenge-header label { display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 400; cursor: pointer; flex: 1; }
+.challenge-header input[type="checkbox"] { accent-color: var(--green); flex-shrink: 0; }
+.severity-group { display: flex; gap: 6px; margin-left: auto; }
+.sev-btn { font-size: 11px; font-weight: 400; padding: 3px 10px; border: 0.75px solid; cursor: pointer; background: transparent; transition: all 0.15s; letter-spacing: 0.5px; }
+.sev-btn[data-sev="H"] { border-color: var(--red); color: var(--red); }
+.sev-btn[data-sev="H"].active { background: var(--red); color: white; }
+.sev-btn[data-sev="M"] { border-color: var(--green-mid); color: var(--green-mid); }
+.sev-btn[data-sev="M"].active { background: var(--green-mid); color: white; }
+.sev-btn[data-sev="L"] { border-color: var(--green-lite); color: var(--green-lite); }
+.sev-btn[data-sev="L"].active { background: var(--green-lite); color: white; }
+.challenge-detail { display: none; padding: 12px 0 12px 24px; border-left: 0.75px solid var(--div); margin: 0 0 10px 8px; }
+.challenge-detail.show { display: block; }
+.challenge-detail .field-row { margin-bottom: 8px; }
+.challenge-detail .field-row label { font-size: 12.5px; color: var(--mid); }
+.ch-radio-row { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 4px 0 10px; }
+.ch-radio-row label { display: flex; align-items: center; gap: 5px; font-size: 12.5px; cursor: pointer; }
+.ch-radio-row input { accent-color: var(--green); }
+@media print { body { background: white; } .page-wrapper { box-shadow: none; border: none; } .progress-nav, .submit-row, .btn { display: none !important; } .form-section { border-bottom: 0.5px solid #ccc; } }
+@media (max-width: 680px) { .form-header, .progress-nav, .fee-section, .form-section, .submit-row { padding-left: 20px; padding-right: 20px; } .field-row { grid-template-columns: 1fr; } .section-heading { margin-left: -20px; margin-right: -20px; padding-left: 20px; } .two-col { grid-template-columns: 1fr; } .office-grid { grid-template-columns: 1fr 1fr; } .form-footer { padding: 14px 20px; flex-direction: column; align-items: flex-start; } }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+<header class="form-header">
+  <div class="header-logo" style="width:80px;height:80px;padding:4px;">
+    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 629.79">
+    <defs><style>.cls-1,.cls-2,.cls-3{fill:#ffffff;}.cls-2{fill-rule:evenodd;}.cls-3{font-family:Prototype,Prototype;font-size:62.24px;}</style></defs>
+    <g><path class="cls-1" d="M539.85,524.28h-120.33c-8.83,0-16.23-2.84-21.97-8.44-5.04-4.9-9.01-10.75-11.8-17.39-2.63-6.26-4.47-12.62-5.48-18.92-.99-6.16-1.47-10.82-1.47-14.24,0-5.97.75-12.61,2.22-19.74,1.52-7.33,3.96-14.18,7.25-20.39,3.42-6.46,7.99-12.03,13.57-16.55,6.13-4.97,13.59-7.48,22.16-7.48h57.58c4.24,0,7.52-.91,9.75-2.7,2.34-1.88,2.64-3.4,2.64-4.51,0-1.68-.68-3.45-2.1-5.44-1.17-1.64-2.11-1.78-3.05-1.78h-90.68c-6.31,0-10.71-4.4-10.71-10.71v-35.17c0-6.31,4.4-10.72,10.71-10.72h97.23c10.06,0,18.84,2.28,26.08,6.79,7,4.36,12.76,10.05,17.12,16.93,4.21,6.64,7.31,14.12,9.22,22.23,1.84,7.88,2.78,15.86,2.78,23.73v113.78c0,6.31-4.4,10.71-10.71,10.71ZM424,415.68c-5.23,0-9.48,1.39-13.01,4.24-4.05,3.28-7.37,7.34-9.88,12.06-2.65,4.99-4.62,10.55-5.86,16.52-1.27,6.16-1.92,11.82-1.92,16.8,0,1.79.22,5.32,1.29,11.95.82,5.15,2.34,10.39,4.52,15.58,2.03,4.82,4.9,9.06,8.54,12.6,2.98,2.91,6.85,4.32,11.83,4.32h116.51v-109.96c0-6.76-.81-13.62-2.39-20.41-1.53-6.52-4-12.5-7.34-17.76-3.19-5.01-7.4-9.18-12.53-12.38-4.89-3.05-11.08-4.59-18.39-4.59h-93.41v27.53h86.86c6.05,0,11.19,2.72,14.88,7.87,3.19,4.48,4.8,9.15,4.8,13.88,0,4.26-1.4,10.47-8.05,15.83-4.87,3.93-11.22,5.92-18.87,5.92h-57.58ZM497.79,483.95h-59.3c-6.41,0-11.74-2.53-15.42-7.33-3.28-4.26-4.95-9.23-4.95-14.77,0-4.86,1.57-9.33,4.65-13.27,3.46-4.42,8.18-6.75,13.65-6.75h61.37c6.31,0,10.71,4.4,10.71,10.71v20.69c0,6.31-4.4,10.72-10.71,10.72ZM436.41,456.36c-.85,0-1.43.18-2.2,1.17-1.06,1.36-1.56,2.73-1.56,4.31,0,2.31.62,4.19,1.94,5.91.66.86,1.59,1.65,3.9,1.65h55.48v-13.05h-57.55Z"/><path class="cls-1" d="M625.7,524.28h-38.62c-6.31,0-10.71-4.4-10.71-10.71v-131.02c0-6.96,1.42-13.73,4.23-20.15,2.76-6.32,6.58-11.94,11.34-16.71,4.77-4.76,10.39-8.58,16.71-11.35,6.41-2.81,13.31-4.23,20.5-4.23h46.89c6.31,0,10.71,4.41,10.71,10.72v35.17c0,6.31-4.4,10.71-10.71,10.71h-33.1c-.68,0-1.02.18-1.29.37-1.12.8-2.12,1.72-2.98,2.74-.77.91-1.33,1.83-1.73,2.84-.48,1.2-.52,1.8-.52,1.96v118.95c0,6.31-4.4,10.71-10.71,10.71ZM590.91,509.75h30.97v-115.13c0-2.32.51-4.73,1.55-7.35.98-2.45,2.37-4.74,4.13-6.83,1.64-1.93,3.53-3.68,5.63-5.18,2.86-2.05,6.14-3.08,9.75-3.08h29.28v-27.53h-43.07c-5.17,0-10.1,1.01-14.67,3.01-4.66,2.04-8.78,4.83-12.26,8.31-3.47,3.48-6.27,7.6-8.3,12.25-2,4.57-3.01,9.39-3.01,14.33v127.2Z"/></g></svg>
+  </div>
+  <div class="header-text">
+    <h1>ARIA MEMBERSHIP APPLICATION / RENEWAL</h1>
+    <h2>2026/2027 Financial Year</h2>
+    <p>African Rail Industry Association &nbsp;|&nbsp; Registered Non-Profit &nbsp;|&nbsp; DTIC Rail Transport Equipment Export Council</p>
+  </div>
+</header>
+
+<nav class="progress-nav">
+  <a href="#section-fee">Fee Schedule</a>
+  <a href="#section-1">1. Company</a>
+  <a href="#section-2">2. Contacts</a>
+  <a href="#section-3">3. Sector</a>
+  <a href="#section-4">4. Capacity</a>
+  <a href="#section-5">5. Transformation</a>
+  <a href="#section-6">6. Support</a>
+  <a href="#section-7">7. Exports</a>
+  <a href="#section-8">8. BUSA</a>
+  <a href="#section-9">9. BBC</a>
+  <a href="#section-10">10. Declaration</a>
+</nav>
+
+<div class="eligibility-banner">
+  <strong>Eligibility:</strong> South African registered companies AND duly registered international companies that provide products or services in the rail industry. &nbsp;|&nbsp;
+  <strong>Mandatory documents:</strong> B-BBEE Certificate &nbsp;|&nbsp; Company Profile &nbsp;|&nbsp; Letter of Appointment &nbsp;|&nbsp; CIPC Registration Certificate &nbsp;|&nbsp;
+  <strong>Permanent membership:</strong> 60 Business Days written notice required before financial year end. Fields marked <strong style="color:var(--red)">*</strong> are compulsory.
+</div>
+
+<form id="ariaForm" novalidate="">
+
+<!-- FEE SCHEDULE -->
+<div class="fee-section" id="section-fee">
+  <h3>Membership Fee Schedule</h3>
+  <p class="fee-note">Select the band matching your annual turnover. Fees exclude VAT (15%). No pro-rata rates. Payment due within 7 days of invoice.</p>
+  <table class="fee-table">
+    <thead><tr><th>Annual Turnover (ZAR)</th><th>Annual Subscription (excl. VAT)</th><th>Select *</th><th>For Office Use</th></tr></thead>
+    <tbody>
+      <tr><td>Less than R10 Million</td><td>R25,000</td><td><input type="radio" name="fee_tier" value="25000" onchange="updateFee(25000)"></td><td></td></tr>
+      <tr><td>R10 Million – R50 Million</td><td>R45,000</td><td><input type="radio" name="fee_tier" value="45000" onchange="updateFee(45000)"></td><td></td></tr>
+      <tr><td>R50 Million – R250 Million</td><td>R85,000</td><td><input type="radio" name="fee_tier" value="85000" onchange="updateFee(85000)"></td><td></td></tr>
+      <tr><td>R250 Million – R500 Million</td><td>R100,000</td><td><input type="radio" name="fee_tier" value="100000" onchange="updateFee(100000)"></td><td></td></tr>
+      <tr><td>R500 Million – R1 Billion</td><td>R125,000</td><td><input type="radio" name="fee_tier" value="125000" onchange="updateFee(125000)"></td><td></td></tr>
+      <tr><td>R1 Billion – R3 Billion</td><td>R150,000</td><td><input type="radio" name="fee_tier" value="150000" onchange="updateFee(150000)"></td><td></td></tr>
+      <tr><td>Greater than R3 Billion</td><td>R300,000</td><td><input type="radio" name="fee_tier" value="300000" onchange="updateFee(300000)"></td><td></td></tr>
+      <tr><td>State-Owned Enterprise</td><td>Contact ARIA Office</td><td><input type="radio" name="fee_tier" value="SOE" onchange="updateFee('SOE')"></td><td></td></tr>
+    </tbody>
+  </table>
+  <div class="fee-display" id="feeDisplay">
+    <div id="feeBase"></div>
+    <div class="vat-line" id="feeVat"></div>
+    <div class="total-line" id="feeTotal"></div>
+  </div>
+</div>
+
+<!-- SECTION 1: COMPANY DETAILS -->
+<div class="form-section" id="section-1">
+  <div class="section-heading"><span class="section-num">1</span> Company Details</div>
+  <div class="field-row"><label class="req">Registered Business Name</label><input type="text" name="reg_name" required="" placeholder="As per CIPC registration"></div>
+  <div class="field-row"><label>Trading Name</label><input type="text" name="trading_name" placeholder="If different from registered name"></div>
+  <div class="two-col">
+    <div class="field-row"><label class="req">Company Registration No.</label><input type="text" name="reg_number" required="" placeholder="YYYY/NNNNNN/NN"></div>
+    <div class="field-row"><label>VAT Registration No.</label><input type="text" name="vat_number" placeholder="4XXXXXXXXXX"></div>
+  </div>
+  <div class="field-row"><label class="req">Physical Address</label><textarea name="physical_address" required="" placeholder="Street, suburb, city, postal code"></textarea></div>
+  <div class="field-row"><label>Postal Address</label>
+    <div>
+      <label style="display:flex;align-items:center;gap:7px;font-size:12px;margin-bottom:6px;cursor:pointer;">
+        <input type="checkbox" id="sameAsPhysical" onchange="togglePostal(this)" style="accent-color:var(--green);"> Same as physical address
+      </label>
+      <textarea name="postal_address" id="postalField" placeholder="Street, suburb, city, postal code"></textarea>
+    </div>
+  </div>
+  <div class="two-col">
+    <div class="field-row"><label class="req">Province</label>
+      <select name="province" required="">
+        <option value="">Select...</option>
+        <option>Eastern Cape</option><option>Free State</option><option>Gauteng</option>
+        <option>KwaZulu-Natal</option><option>Limpopo</option><option>Mpumalanga</option>
+        <option>North West</option><option>Northern Cape</option><option>Western Cape</option>
+        <option>Outside South Africa</option>
+      </select>
+    </div>
+    <div class="field-row"><label class="req">Company Telephone</label><input type="tel" name="telephone" required="" placeholder="+27 XX XXX XXXX"></div>
+  </div>
+  <div class="two-col">
+    <div class="field-row"><label class="req">Office Email Address</label><input type="email" name="office_email" required=""></div>
+    <div class="field-row"><label>Company Website</label><input type="url" name="website" placeholder="https://"></div>
+  </div>
+  <div class="two-col">
+    <div class="field-row"><label class="req">Annual Turnover Band</label>
+      <select name="turnover_band" required="">
+        <option value="">Select...</option>
+        <option>Less than R10 Million</option><option>R10M – R50M</option><option>R50M – R250M</option>
+        <option>R250M – R500M</option><option>R500M – R1 Billion</option><option>R1B – R3 Billion</option>
+        <option>Greater than R3 Billion</option><option>State-Owned Enterprise</option>
+      </select>
+    </div>
+    <div class="field-row"><label class="req">Year Established</label><input type="number" name="year_established" required="" min="1800" max="2026" placeholder="YYYY"></div>
+  </div>
+  <div class="two-col">
+    <div class="field-row"><label>Exact Annual Turnover (ZAR)</label><input type="text" name="exact_turnover" placeholder="Treated as strictly confidential"></div>
+    <div class="subsection-label" style="margin-top:14px;">Membership Category *</div>
+  <p class="subsection-note">In accordance with Clause 12.1 of the ARIA Memorandum of Incorporation.</p>
+  <div class="radio-row">
+    <label><input type="radio" name="membership_category" value="A" required=""> Category A — Private or Public Company</label>
+    <label><input type="radio" name="membership_category" value="B"> Category B — State-Owned Company</label>
+  </div>
+  <div class="field-row"><label>Parent Company</label><input type="text" name="parent_company" placeholder="If applicable"></div>
+  </div>
+</div>
+
+<!-- SECTION 2: CONTACT DETAILS -->
+<div class="form-section" id="section-2">
+  <div class="section-heading"><span class="section-num">2</span> Contact Details</div>
+  <p class="subsection-note" style="margin-top:-8px;margin-bottom:14px;">Contact details will be used for all ARIA communications. Accurate information is critical.</p>
+  <div class="contact-card">
+    <div class="contact-card-title">Primary Contact — Mandated Representative <span class="contact-badge">Required</span></div>
+    <div class="two-col">
+      <div class="field-row"><label class="req">Full Name</label><input type="text" name="p1_name" required=""></div>
+      <div class="field-row"><label class="req">Designation</label><input type="text" name="p1_designation" required=""></div>
+      <div class="field-row"><label>Telephone</label><input type="tel" name="p1_tel" placeholder="+27 XX XXX XXXX"></div>
+      <div class="field-row"><label class="req">Mobile</label><input type="tel" name="p1_mobile" required="" placeholder="+27 XX XXX XXXX"></div>
+    </div>
+    <div class="field-row"><label class="req">Email Address</label><input type="email" name="p1_email" required=""></div>
+  </div>
+  <div class="contact-card">
+    <div class="contact-card-title">Secondary Contact <span class="contact-badge">Required</span></div>
+    <div class="two-col">
+      <div class="field-row"><label class="req">Full Name</label><input type="text" name="p2_name" required=""></div>
+      <div class="field-row"><label class="req">Designation</label><input type="text" name="p2_designation" required=""></div>
+      <div class="field-row"><label>Telephone</label><input type="tel" name="p2_tel"></div>
+      <div class="field-row"><label class="req">Mobile</label><input type="tel" name="p2_mobile" required=""></div>
+    </div>
+    <div class="field-row"><label class="req">Email Address</label><input type="email" name="p2_email" required=""></div>
+  </div>
+  <div class="contact-card">
+    <div class="contact-card-title">Finance Contact <span class="contact-badge">Required</span> <span style="font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--mid)">For invoicing and payment queries</span></div>
+    <div class="two-col">
+      <div class="field-row"><label class="req">Full Name</label><input type="text" name="fin_name" required=""></div>
+      <div class="field-row"><label class="req">Email Address</label><input type="email" name="fin_email" required=""></div>
+    </div>
+  </div>
+  <div class="contact-card">
+    <div class="contact-card-title">Chief Executive Officer <span class="contact-badge">MOI Required</span></div>
+    <p style="font-size:11px;color:var(--mid);margin:-6px 0 10px;">Required for the Membership Register — Clause 14.2 of the ARIA MOI</p>
+    <div class="two-col">
+      <div class="field-row"><label class="req">CEO Full Name</label><input type="text" name="ceo_name" required="" placeholder="Full name"></div>
+      <div class="field-row"><label class="req">CEO Email</label><input type="email" name="ceo_email" required="" placeholder="email@company.co.za"></div>
+    </div>
+    <div class="two-col">
+      <div class="field-row"><label>CEO Telephone</label><input type="tel" name="ceo_tel" placeholder="+27 XX XXX XXXX"></div>
+      <div class="field-row"><label>CEO Mobile</label><input type="tel" name="ceo_mobile" placeholder="+27 XX XXX XXXX"></div>
+    </div>
+  </div>
+  <div class="contact-card">
+    <div class="contact-card-title">Chairperson / President <span class="contact-badge">MOI Required</span></div>
+    <p style="font-size:11px;color:var(--mid);margin:-6px 0 10px;">Required for the Membership Register — Clause 14.2 of the ARIA MOI</p>
+    <div class="two-col">
+      <div class="field-row"><label class="req">Chairperson Full Name</label><input type="text" name="chair_name" required="" placeholder="Full name"></div>
+      <div class="field-row"><label class="req">Chairperson Email</label><input type="email" name="chair_email" required="" placeholder="email@company.co.za"></div>
+    </div>
+    <div class="two-col">
+      <div class="field-row"><label>Chairperson Telephone</label><input type="tel" name="chair_tel" placeholder="+27 XX XXX XXXX"></div>
+    </div>
+  </div>
+  <div class="contact-card">
+    <div class="contact-card-title">Safety Officer <span class="contact-badge opt">Optional</span> <span style="font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--mid)">For RSR-related matters</span></div>
+    <div class="two-col">
+      <div class="field-row"><label>Full Name</label><input type="text" name="safety_name"></div>
+      <div class="field-row"><label>Email Address</label><input type="email" name="safety_email"></div>
+    </div>
+  </div>
+  <div class="contact-card">
+    <div class="contact-card-title">External Engagement Contact <span class="contact-badge opt">Optional</span> <span style="font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--mid)">For BUSA/BBC representation opportunities</span></div>
+    <div class="two-col">
+      <div class="field-row"><label>Full Name</label><input type="text" name="ext_name"></div>
+      <div class="field-row"><label>Mobile</label><input type="tel" name="ext_mobile"></div>
+    </div>
+    <div class="field-row"><label>Email Address</label><input type="email" name="ext_email"></div>
+  </div>
+  <div class="subsection-label">Skills Development Registration</div>
+  <div class="two-col">
+    <div class="field-row"><label>SETA Registration</label><input type="text" name="seta_reg" placeholder="e.g. TETA, MerSETA"></div>
+    <div class="field-row"><label>SDL Number</label><input type="text" name="sdl_number"></div>
+  </div>
+</div>
+
+<!-- SECTION 3: SECTOR CLASSIFICATION -->
+<div class="form-section" id="section-3">
+  <div class="section-heading"><span class="section-num">3</span> Registered Sector Classification</div>
+  <div class="subsection-label">Sector (tick as appropriate) *</div>
+  <div class="check-grid">
+    <label><input type="checkbox" name="sector" value="rolling_stock"> Rolling Stock</label>
+    <label><input type="checkbox" name="sector" value="perway_ohte"> Perway and OHTE</label>
+    <label><input type="checkbox" name="sector" value="signalling"> Signalling</label>
+    <label><input type="checkbox" name="sector" value="telecom"> Telecommunications</label>
+    <label><input type="checkbox" name="sector" value="passenger_svcs"> Passenger Rail Services</label>
+    <label><input type="checkbox" name="sector" value="infrastructure"> Infrastructure Development &amp; Construction</label>
+    <label><input type="checkbox" name="sector" value="mro"> Maintenance, Repair &amp; Overhaul (MRO)</label>
+    <label><input type="checkbox" name="sector" value="training_skills"> Training &amp; Skills Development</label>
+    <label><input type="checkbox" name="sector" value="freight_ops"> Freight Operations &amp; Logistics</label>
+    <label><input type="checkbox" name="sector" value="rail_tech"> Rail Technology &amp; Digital Solutions</label>
+    <label><input type="checkbox" name="sector" value="consulting"> Consulting &amp; Professional Services</label>
+    <label><input type="checkbox" name="sector" value="other_sector"> Other</label>
+  </div>
+  <div class="field-row"><label>If Other, specify</label><input type="text" name="sector_other"></div>
+  <div class="subsection-label">Types of Business (tick as appropriate) *</div>
+  <p class="subsection-note">Selecting OEM, Supplier / Component Manufacturer, Assembly, Manufacturer, or Maintenance activates Section 4.</p>
+  <div class="check-grid">
+    <label><input type="checkbox" name="btype" value="OEM" onchange="checkMfg()"> Original Equipment Manufacturer (OEM)</label>
+    <label><input type="checkbox" name="btype" value="Component" onchange="checkMfg()"> Supplier / Component Manufacturer</label>
+    <label><input type="checkbox" name="btype" value="Assembly" onchange="checkMfg()"> Assembly</label>
+    <label><input type="checkbox" name="btype" value="Manufacturer" onchange="checkMfg()"> Manufacturer</label>
+    <label><input type="checkbox" name="btype" value="ProjectMgmt"> Project Management</label>
+    <label><input type="checkbox" name="btype" value="Design"> Design</label>
+    <label><input type="checkbox" name="btype" value="OperateManage"> Operate &amp; Manage</label>
+    <label><input type="checkbox" name="btype" value="Maintenance" onchange="checkMfg()"> Maintenance</label>
+    <label><input type="checkbox" name="btype" value="Consulting_bt"> Consulting</label>
+    <label><input type="checkbox" name="btype" value="Warehousing"> Warehousing &amp; Logistics</label>
+    <label><input type="checkbox" name="btype" value="Training_bt"> Training</label>
+    <label><input type="checkbox" name="btype" value="Other_bt"> Other</label>
+  </div>
+  <div class="field-row"><label>If Other, specify</label><input type="text" name="btype_other"></div>
+</div>
+
+<!-- SECTION 4: MANUFACTURING CAPACITY -->
+<div class="form-section" id="section-4">
+  <div class="section-heading"><span class="section-num">4</span> Manufacturing Capacity</div>
+  <div class="conditional" id="sec4_fields">
+    <p class="subsection-note" style="margin-top:-8px;">Complete this section if you manufacture products or provide services to the rail industry.</p>
+    <div class="field-row"><label class="req">Production Capabilities</label><textarea name="prod_capabilities" placeholder="Describe your main products, services, and manufacturing capabilities"></textarea></div>
+    <div class="two-col">
+      <div class="field-row"><label class="req">Annual Production Capacity</label><input type="text" name="prod_capacity" placeholder="Units/year, tonnage, or value"></div>
+      <div class="field-row"><label>Number of Employees</label><input type="number" name="employees" min="1" placeholder="Total headcount"></div>
+    </div>
+    <div class="field-row"><label>Manufacturing Facility Locations</label><textarea name="mfg_locations" placeholder="List city and province for each facility"></textarea></div>
+    <div class="field-row"><label>Local Content %</label><input type="number" name="local_content_pct" min="0" max="100" placeholder="0–100"></div>
+    <div class="subsection-label">Certifications (tick all that apply)</div>
+    <div class="check-grid">
+      <label><input type="checkbox" name="cert" value="iso9001"> ISO 9001 (Quality)</label>
+      <label><input type="checkbox" name="cert" value="iso14001"> ISO 14001 (Environmental)</label>
+      <label><input type="checkbox" name="cert" value="iso45001"> ISO 45001 (Health &amp; Safety)</label>
+      <label><input type="checkbox" name="cert" value="iris"> IRIS / ISO 22163 (Rail Quality)</label>
+      <label><input type="checkbox" name="cert" value="sabs"> SABS Mark</label>
+      <label><input type="checkbox" name="cert" value="en15085"> EN 15085 (Railway Welding)</label>
+      <label><input type="checkbox" name="cert" value="other_cert"> Other</label>
+    </div>
+    <div class="field-row"><label>Other Certifications</label><input type="text" name="cert_other"></div>
+    <div class="subsection-label">RSR Safety Permit</div>
+    <div class="radio-row">
+      <label><input type="radio" name="rsr" value="yes" onchange="toggle('rsr_detail', true)"> Yes</label>
+      <label><input type="radio" name="rsr" value="no" onchange="toggle('rsr_detail', false)"> No</label>
+    </div>
+    <div class="conditional" id="rsr_detail">
+      <div class="conditional-inner">
+        <div class="two-col">
+          <div class="field-row"><label>RSR Permit Number</label><input type="text" name="rsr_number"></div>
+          <div class="field-row"><label>RSR Permit Category</label>
+            <select name="rsr_category">
+              <option value="">Select...</option>
+              <option>Group A – Network Operator</option>
+              <option>Group B – Train Operator</option>
+              <option>Group C – Station Operator</option>
+              <option>Multiple Categories</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p id="sec4_placeholder" style="font-size:12.5px;color:var(--mid);font-style:italic;margin-bottom:14px;">
+    This section activates when a manufacturing or maintenance business type is selected in Section 3.
+  </p>
+  <div class="subsection-label">Key Business Challenges</div>
+  <p class="subsection-note">Tick each challenge that applies. Rate severity and answer the follow-up questions that appear. This data informs how ARIA supports your business.</p>
+  <style>
+    .challenge-block { border-bottom:0.75px solid var(--div); margin-bottom:0; }
+    .challenge-header { display:flex; align-items:center; gap:10px; padding:10px 0; cursor:pointer; }
+    .challenge-header label { display:flex; align-items:center; gap:8px; font-size:13.5px; font-weight:400; cursor:pointer; flex:1; }
+    .challenge-header input[type="checkbox"] { accent-color:var(--green); flex-shrink:0; }
+    .severity-group { display:flex; gap:6px; margin-left:auto; }
+    .sev-btn { font-size:11px; font-weight:400; padding:3px 10px; border:0.75px solid; cursor:pointer; background:transparent; transition:all 0.15s; letter-spacing:0.5px; }
+    .sev-btn[data-sev="H"] { border-color:#8B1A1A; color:#8B1A1A; }
+    .sev-btn[data-sev="H"].active { background:#8B1A1A; color:white; }
+    .sev-btn[data-sev="M"] { border-color:var(--green-mid); color:var(--green-mid); }
+    .sev-btn[data-sev="M"].active { background:var(--green-mid); color:white; }
+    .sev-btn[data-sev="L"] { border-color:var(--green-lite); color:var(--green-lite); }
+    .sev-btn[data-sev="L"].active { background:var(--green-lite); color:white; }
+    .challenge-detail { display:none; padding:12px 0 12px 24px; border-left:0.75px solid var(--div); margin:0 0 10px 8px; }
+    .challenge-detail.show { display:block; }
+    .challenge-detail .field-row { margin-bottom:8px; }
+    .challenge-detail .field-row label { font-size:12.5px; color:var(--mid); }
+    .ch-radio-row { display:flex; flex-wrap:wrap; gap:4px 14px; margin:4px 0 10px; }
+    .ch-radio-row label { display:flex; align-items:center; gap:5px; font-size:12.5px; cursor:pointer; }
+    .ch-radio-row input { accent-color:var(--green); }
+  </style>
+
+  <div class="challenge-block">
+    <div class="challenge-header">
+      <label><input type="checkbox" name="ch_supply" value="1" onchange="toggleChallenge('ch_supply_detail', this)"> Supply Chain Delays</label>
+      <div class="severity-group" id="ch_supply_sev_group" style="display:none;">
+        <span style="font-size:11px;color:var(--mid);align-self:center;">Severity:</span>
+        <button type="button" class="sev-btn" data-sev="H" onclick="setSev('ch_supply_severity','H',this)">High</button>
+        <button type="button" class="sev-btn" data-sev="M" onclick="setSev('ch_supply_severity','M',this)">Med</button>
+        <button type="button" class="sev-btn" data-sev="L" onclick="setSev('ch_supply_severity','L',this)">Low</button>
+        <input type="hidden" name="ch_supply_severity" value="">
+      </div>
+    </div>
+    <div class="challenge-detail" id="ch_supply_detail">
+      <div class="field-row"><label>Which components or materials are affected?</label><input type="text" name="ch_supply_materials" placeholder="e.g. steel, electrical components, bearings"></div>
+      <div class="field-row"><label>Source of affected materials</label>
+        <div class="ch-radio-row">
+          <label><input type="radio" name="ch_supply_source" value="local"> Primarily local</label>
+          <label><input type="radio" name="ch_supply_source" value="imported"> Primarily imported</label>
+          <label><input type="radio" name="ch_supply_source" value="both"> Both</label>
+        </div>
+      </div>
+      <div class="field-row"><label>Average lead time delay (weeks)</label><input type="number" name="ch_supply_leadtime" min="0" placeholder="e.g. 6" style="width:120px"></div>
+    </div>
+  </div>
+
+  <div class="challenge-block">
+    <div class="challenge-header">
+      <label><input type="checkbox" name="ch_skills" value="1" onchange="toggleChallenge('ch_skills_detail', this)"> Skilled Labour Shortage</label>
+      <div class="severity-group" id="ch_skills_sev_group" style="display:none;">
+        <span style="font-size:11px;color:var(--mid);align-self:center;">Severity:</span>
+        <button type="button" class="sev-btn" data-sev="H" onclick="setSev('ch_skills_severity','H',this)">High</button>
+        <button type="button" class="sev-btn" data-sev="M" onclick="setSev('ch_skills_severity','M',this)">Med</button>
+        <button type="button" class="sev-btn" data-sev="L" onclick="setSev('ch_skills_severity','L',this)">Low</button>
+        <input type="hidden" name="ch_skills_severity" value="">
+      </div>
+    </div>
+    <div class="challenge-detail" id="ch_skills_detail">
+      <div class="field-row"><label>Which skill categories are most affected? (tick all)</label>
+        <div class="ch-radio-row" style="flex-wrap:wrap;">
+          <label><input type="checkbox" name="ch_skills_type" value="artisan"> Artisan / Trade</label>
+          <label><input type="checkbox" name="ch_skills_type" value="technician"> Technician</label>
+          <label><input type="checkbox" name="ch_skills_type" value="engineer"> Engineer</label>
+          <label><input type="checkbox" name="ch_skills_type" value="management"> Management</label>
+          <label><input type="checkbox" name="ch_skills_type" value="other"> Other</label>
+        </div>
+      </div>
+      <div class="field-row"><label>Approximate number of unfilled vacancies</label><input type="number" name="ch_skills_vacancies" min="0" placeholder="e.g. 12" style="width:120px"></div>
+      <div class="field-row"><label>Have you approached TETA for funded training?</label>
+        <div class="ch-radio-row">
+          <label><input type="radio" name="ch_skills_teta" value="yes"> Yes</label>
+          <label><input type="radio" name="ch_skills_teta" value="no"> No</label>
+          <label><input type="radio" name="ch_skills_teta" value="unsure"> Not sure how</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="challenge-block">
+    <div class="challenge-header">
+      <label><input type="checkbox" name="ch_funding" value="1" onchange="toggleChallenge('ch_funding_detail', this)"> Funding / Finance Gaps</label>
+      <div class="severity-group" id="ch_funding_sev_group" style="display:none;">
+        <span style="font-size:11px;color:var(--mid);align-self:center;">Severity:</span>
+        <button type="button" class="sev-btn" data-sev="H" onclick="setSev('ch_funding_severity','H',this)">High</button>
+        <button type="button" class="sev-btn" data-sev="M" onclick="setSev('ch_funding_severity','M',this)">Med</button>
+        <button type="button" class="sev-btn" data-sev="L" onclick="setSev('ch_funding_severity','L',this)">Low</button>
+        <input type="hidden" name="ch_funding_severity" value="">
+      </div>
+    </div>
+    <div class="challenge-detail" id="ch_funding_detail">
+      <div class="field-row"><label>What is the funding required for? (tick all)</label>
+        <div class="ch-radio-row">
+          <label><input type="checkbox" name="ch_funding_purpose" value="capex"> Capital expenditure</label>
+          <label><input type="checkbox" name="ch_funding_purpose" value="working_capital"> Working capital</label>
+          <label><input type="checkbox" name="ch_funding_purpose" value="export_finance"> Export finance</label>
+          <label><input type="checkbox" name="ch_funding_purpose" value="rd"> Research &amp; Development</label>
+        </div>
+      </div>
+      <div class="field-row"><label>Which funders have you approached? (tick all)</label>
+        <div class="ch-radio-row">
+          <label><input type="checkbox" name="ch_funding_dfi" value="idc"> IDC</label>
+          <label><input type="checkbox" name="ch_funding_dfi" value="sefa"> SEFA</label>
+          <label><input type="checkbox" name="ch_funding_dfi" value="ecic"> ECIC</label>
+          <label><input type="checkbox" name="ch_funding_dfi" value="bank"> Commercial bank</label>
+          <label><input type="checkbox" name="ch_funding_dfi" value="none"> None yet</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="challenge-block">
+    <div class="challenge-header">
+      <label><input type="checkbox" name="ch_tech" value="1" onchange="toggleChallenge('ch_tech_detail', this)"> Technology Limitations</label>
+      <div class="severity-group" id="ch_tech_sev_group" style="display:none;">
+        <span style="font-size:11px;color:var(--mid);align-self:center;">Severity:</span>
+        <button type="button" class="sev-btn" data-sev="H" onclick="setSev('ch_tech_severity','H',this)">High</button>
+        <button type="button" class="sev-btn" data-sev="M" onclick="setSev('ch_tech_severity','M',this)">Med</button>
+        <button type="button" class="sev-btn" data-sev="L" onclick="setSev('ch_tech_severity','L',this)">Low</button>
+        <input type="hidden" name="ch_tech_severity" value="">
+      </div>
+    </div>
+    <div class="challenge-detail" id="ch_tech_detail">
+      <div class="field-row"><label>Which technology area?</label><input type="text" name="ch_tech_area" placeholder="e.g. CNC machinery, ERP systems, testing equipment"></div>
+      <div class="field-row"><label>Primary barrier</label>
+        <div class="ch-radio-row">
+          <label><input type="radio" name="ch_tech_barrier" value="cost"> Cost</label>
+          <label><input type="radio" name="ch_tech_barrier" value="availability"> Local availability</label>
+          <label><input type="radio" name="ch_tech_barrier" value="skills"> Skills to operate</label>
+          <label><input type="radio" name="ch_tech_barrier" value="infrastructure"> Infrastructure</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="challenge-block">
+    <div class="challenge-header">
+      <label><input type="checkbox" name="ch_regulatory" value="1" onchange="toggleChallenge('ch_regulatory_detail', this)"> Regulatory Compliance</label>
+      <div class="severity-group" id="ch_regulatory_sev_group" style="display:none;">
+        <span style="font-size:11px;color:var(--mid);align-self:center;">Severity:</span>
+        <button type="button" class="sev-btn" data-sev="H" onclick="setSev('ch_regulatory_severity','H',this)">High</button>
+        <button type="button" class="sev-btn" data-sev="M" onclick="setSev('ch_regulatory_severity','M',this)">Med</button>
+        <button type="button" class="sev-btn" data-sev="L" onclick="setSev('ch_regulatory_severity','L',this)">Low</button>
+        <input type="hidden" name="ch_regulatory_severity" value="">
+      </div>
+    </div>
+    <div class="challenge-detail" id="ch_regulatory_detail">
+      <div class="field-row"><label>Which regulation? (tick all)</label>
+        <div class="ch-radio-row">
+          <label><input type="checkbox" name="ch_regulatory_type" value="rsr"> RSR safety requirements</label>
+          <label><input type="checkbox" name="ch_regulatory_type" value="sans"> SANS standards</label>
+          <label><input type="checkbox" name="ch_regulatory_type" value="environmental"> Environmental</label>
+          <label><input type="checkbox" name="ch_regulatory_type" value="bbbee"> B-BBEE</label>
+          <label><input type="checkbox" name="ch_regulatory_type" value="other"> Other</label>
+        </div>
+      </div>
+      <div class="field-row"><label>Compliance stage</label>
+        <div class="ch-radio-row">
+          <label><input type="radio" name="ch_regulatory_stage" value="understanding"> Still understanding requirements</label>
+          <label><input type="radio" name="ch_regulatory_stage" value="implementing"> Implementing</label>
+          <label><input type="radio" name="ch_regulatory_stage" value="non_compliant"> Currently non-compliant</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="challenge-block">
+    <div class="challenge-header">
+      <label><input type="checkbox" name="ch_market" value="1" onchange="toggleChallenge('ch_market_detail', this)"> Market Access</label>
+      <div class="severity-group" id="ch_market_sev_group" style="display:none;">
+        <span style="font-size:11px;color:var(--mid);align-self:center;">Severity:</span>
+        <button type="button" class="sev-btn" data-sev="H" onclick="setSev('ch_market_severity','H',this)">High</button>
+        <button type="button" class="sev-btn" data-sev="M" onclick="setSev('ch_market_severity','M',this)">Med</button>
+        <button type="button" class="sev-btn" data-sev="L" onclick="setSev('ch_market_severity','L',this)">Low</button>
+        <input type="hidden" name="ch_market_severity" value="">
+      </div>
+    </div>
+    <div class="challenge-detail" id="ch_market_detail">
+      <div class="field-row"><label>Which market?</label>
+        <div class="ch-radio-row">
+          <label><input type="radio" name="ch_market_type" value="domestic"> Domestic</label>
+          <label><input type="radio" name="ch_market_type" value="export"> Export</label>
+          <label><input type="radio" name="ch_market_type" value="both"> Both</label>
+        </div>
+      </div>
+      <div class="field-row"><label>Which buyer / SOC are you trying to access?</label><input type="text" name="ch_market_buyer" placeholder="e.g. Transnet, PRASA, municipal operator"></div>
+      <div class="field-row"><label>Primary barrier</label>
+        <div class="ch-radio-row">
+          <label><input type="radio" name="ch_market_barrier" value="procurement"> Procurement process</label>
+          <label><input type="radio" name="ch_market_barrier" value="specs"> Specification requirements</label>
+          <label><input type="radio" name="ch_market_barrier" value="relationships"> Relationships / networks</label>
+          <label><input type="radio" name="ch_market_barrier" value="pricing"> Pricing</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="challenge-block">
+    <div class="challenge-header">
+      <label><input type="checkbox" name="ch_rawmat" value="1" onchange="toggleChallenge('ch_rawmat_detail', this)"> Raw Material Costs</label>
+      <div class="severity-group" id="ch_rawmat_sev_group" style="display:none;">
+        <span style="font-size:11px;color:var(--mid);align-self:center;">Severity:</span>
+        <button type="button" class="sev-btn" data-sev="H" onclick="setSev('ch_rawmat_severity','H',this)">High</button>
+        <button type="button" class="sev-btn" data-sev="M" onclick="setSev('ch_rawmat_severity','M',this)">Med</button>
+        <button type="button" class="sev-btn" data-sev="L" onclick="setSev('ch_rawmat_severity','L',this)">Low</button>
+        <input type="hidden" name="ch_rawmat_severity" value="">
+      </div>
+    </div>
+    <div class="challenge-detail" id="ch_rawmat_detail">
+      <div class="field-row"><label>Which materials are most affected?</label><input type="text" name="ch_rawmat_materials" placeholder="e.g. steel, copper, aluminium"></div>
+      <div class="field-row"><label>Source</label>
+        <div class="ch-radio-row">
+          <label><input type="radio" name="ch_rawmat_source" value="local"> Primarily local</label>
+          <label><input type="radio" name="ch_rawmat_source" value="imported"> Primarily imported</label>
+          <label><input type="radio" name="ch_rawmat_source" value="both"> Both</label>
+        </div>
+      </div>
+      <div class="field-row"><label>Estimated % of total production cost</label><input type="number" name="ch_rawmat_pct" min="0" max="100" placeholder="0–100" style="width:120px"></div>
+    </div>
+  </div>
+
+  <div class="challenge-block">
+    <div class="challenge-header">
+      <label><input type="checkbox" name="ch_energy" value="1" onchange="toggleChallenge('ch_energy_detail', this)"> Energy / Load Shedding</label>
+      <div class="severity-group" id="ch_energy_sev_group" style="display:none;">
+        <span style="font-size:11px;color:var(--mid);align-self:center;">Severity:</span>
+        <button type="button" class="sev-btn" data-sev="H" onclick="setSev('ch_energy_severity','H',this)">High</button>
+        <button type="button" class="sev-btn" data-sev="M" onclick="setSev('ch_energy_severity','M',this)">Med</button>
+        <button type="button" class="sev-btn" data-sev="L" onclick="setSev('ch_energy_severity','L',this)">Low</button>
+        <input type="hidden" name="ch_energy_severity" value="">
+      </div>
+    </div>
+    <div class="challenge-detail" id="ch_energy_detail">
+      <div class="field-row"><label>Estimated production hours lost per week</label><input type="number" name="ch_energy_hours" min="0" placeholder="e.g. 8" style="width:120px"></div>
+      <div class="field-row"><label>Backup power in place?</label>
+        <div class="ch-radio-row">
+          <label><input type="radio" name="ch_energy_backup" value="yes_full"> Yes — full coverage</label>
+          <label><input type="radio" name="ch_energy_backup" value="yes_partial"> Yes — partial</label>
+          <label><input type="radio" name="ch_energy_backup" value="no"> No</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="challenge-block">
+    <div class="challenge-header">
+      <label><input type="checkbox" name="ch_local" value="1" onchange="toggleChallenge('ch_local_detail', this)"> Localisation Requirements</label>
+      <div class="severity-group" id="ch_local_sev_group" style="display:none;">
+        <span style="font-size:11px;color:var(--mid);align-self:center;">Severity:</span>
+        <button type="button" class="sev-btn" data-sev="H" onclick="setSev('ch_local_severity','H',this)">High</button>
+        <button type="button" class="sev-btn" data-sev="M" onclick="setSev('ch_local_severity','M',this)">Med</button>
+        <button type="button" class="sev-btn" data-sev="L" onclick="setSev('ch_local_severity','L',this)">Low</button>
+        <input type="hidden" name="ch_local_severity" value="">
+      </div>
+    </div>
+    <div class="challenge-detail" id="ch_local_detail">
+      <div class="field-row"><label>Which designation applies to your products?</label><input type="text" name="ch_local_designation" placeholder="e.g. Rolling stock, perway, signalling"></div>
+      <div class="field-row"><label>Current local content % achieved</label><input type="number" name="ch_local_pct" min="0" max="100" placeholder="0–100" style="width:120px"></div>
+      <div class="field-row"><label>Primary barrier to increasing local content</label><input type="text" name="ch_local_barrier" placeholder="e.g. supplier capability, cost, technical specs"></div>
+    </div>
+  </div>
+
+  <div class="challenge-block">
+    <div class="challenge-header">
+      <label><input type="checkbox" name="ch_imports" value="1" onchange="toggleChallenge('ch_imports_detail', this)"> Competition from Imports</label>
+      <div class="severity-group" id="ch_imports_sev_group" style="display:none;">
+        <span style="font-size:11px;color:var(--mid);align-self:center;">Severity:</span>
+        <button type="button" class="sev-btn" data-sev="H" onclick="setSev('ch_imports_severity','H',this)">High</button>
+        <button type="button" class="sev-btn" data-sev="M" onclick="setSev('ch_imports_severity','M',this)">Med</button>
+        <button type="button" class="sev-btn" data-sev="L" onclick="setSev('ch_imports_severity','L',this)">Low</button>
+        <input type="hidden" name="ch_imports_severity" value="">
+      </div>
+    </div>
+    <div class="challenge-detail" id="ch_imports_detail">
+      <div class="field-row"><label>Which product categories are affected?</label><input type="text" name="ch_imports_products" placeholder="e.g. bogies, brake systems, signalling equipment"></div>
+      <div class="field-row"><label>Country of origin (if known)</label><input type="text" name="ch_imports_origin" placeholder="e.g. China, Germany, India"></div>
+      <div class="field-row"><label>Estimated rand value impact on your business per year</label><input type="text" name="ch_imports_value" placeholder="e.g. R5M"></div>
+    </div>
+  </div>
+
+  <div class="challenge-block">
+    <div class="challenge-header">
+      <label><input type="checkbox" name="ch_other" value="1" onchange="toggleChallenge('ch_other_detail', this)"> Other Challenge</label>
+      <div class="severity-group" id="ch_other_sev_group" style="display:none;">
+        <span style="font-size:11px;color:var(--mid);align-self:center;">Severity:</span>
+        <button type="button" class="sev-btn" data-sev="H" onclick="setSev('ch_other_severity','H',this)">High</button>
+        <button type="button" class="sev-btn" data-sev="M" onclick="setSev('ch_other_severity','M',this)">Med</button>
+        <button type="button" class="sev-btn" data-sev="L" onclick="setSev('ch_other_severity','L',this)">Low</button>
+        <input type="hidden" name="ch_other_severity" value="">
+      </div>
+    </div>
+    <div class="challenge-detail" id="ch_other_detail">
+      <div class="field-row"><label>Describe the challenge</label><textarea name="ch_other_description" placeholder="Describe the challenge, its impact on your business, and any support you need from ARIA"></textarea></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: TRANSFORMATION STATUS -->
+<div class="form-section" id="section-5">
+  <div class="section-heading"><span class="section-num">5</span> Company Profile &amp; Transformation Status</div>
+  <div class="subsection-label">Transformation Status *</div>
+  <div class="two-col">
+    <div class="field-row"><label class="req">B-BBEE Level</label>
+      <select name="bbbee_level" required="">
+        <option value="">Select...</option>
+        <option>Level 1</option><option>Level 2</option><option>Level 3</option><option>Level 4</option>
+        <option>Level 5</option><option>Level 6</option><option>Level 7</option><option>Level 8</option>
+        <option>Non-Compliant</option><option>Exempt Micro Enterprise (EME)</option>
+      </select>
+    </div>
+    <div class="field-row"><label class="req">B-BBEE Certificate Expiry Date</label><input type="date" name="bbbee_expiry" required=""></div>
+    <div class="field-row"><label class="req">Black Ownership %</label><input type="number" name="black_own" required="" min="0" max="100" placeholder="0–100"></div>
+    <div class="field-row"><label class="req">Black Women Ownership %</label><input type="number" name="black_women_own" required="" min="0" max="100" placeholder="0–100"></div>
+  </div>
+  <div class="subsection-label">Black Industrialist Programme *</div>
+  <div class="radio-row">
+    <label><input type="radio" name="bi_programme" value="yes"> Yes — Designated</label>
+    <label><input type="radio" name="bi_programme" value="applied"> Applied — Awaiting Outcome</label>
+    <label><input type="radio" name="bi_programme" value="no"> No</label>
+  </div>
+  <div class="subsection-label">Enterprise Size Classification *</div>
+  <div class="radio-row">
+    <label><input type="radio" name="enterprise_size" value="EME"> Exempt Micro Enterprise (EME) — Turnover &lt; R10m</label>
+    <label><input type="radio" name="enterprise_size" value="QSE"> Qualifying Small Enterprise (QSE) — R10m–R50m</label>
+    <label><input type="radio" name="enterprise_size" value="Generic"> Generic Enterprise — Turnover &gt; R50m</label>
+  </div>
+</div>
+
+<!-- SECTION 6: AREAS OF INTEREST -->
+<div class="form-section" id="section-6">
+  <div class="section-heading"><span class="section-num">6</span> Areas of Interest &amp; Support Needs</div>
+  <div class="subsection-label">How can ARIA support your business? (tick all applicable) *</div>
+  <div class="check-grid">
+    <label><input type="checkbox" name="support" value="market_intel"> Market Intelligence &amp; Research</label>
+    <label><input type="checkbox" name="support" value="networking"> Networking Events</label>
+    <label><input type="checkbox" name="support" value="localisation"> Localisation Programme Support</label>
+    <label><input type="checkbox" name="support" value="training"> Training &amp; Skills Development</label>
+    <label><input type="checkbox" name="support" value="advocacy"> Policy Advocacy</label>
+    <label><input type="checkbox" name="support" value="funding"> Funding / Finance Access</label>
+    <label><input type="checkbox" name="support" value="workshops"> Technical Workshops</label>
+    <label><input type="checkbox" name="support" value="export_promo"> Export Promotion</label>
+    <label><input type="checkbox" name="support" value="soc"> SOC / Transnet Engagement Facilitation</label>
+    <label><input type="checkbox" name="support" value="supplier_match"> Supplier Matchmaking</label>
+    <label><input type="checkbox" name="support" value="tender_alerts"> Tender Alerts</label>
+    <label><input type="checkbox" name="support" value="industry_stats"> Industry Statistics</label>
+    <label><input type="checkbox" name="support" value="other_support"> Other</label>
+  </div>
+  <div class="field-row"><label>If Other, specify</label><input type="text" name="support_other"></div>
+  <div class="subsection-label">Preferred Collaboration Opportunities (tick all applicable)</div>
+  <div class="check-grid">
+    <label><input type="checkbox" name="collab" value="committees"> Join ARIA Committees</label>
+    <label><input type="checkbox" name="collab" value="mentor"> Mentor Startups / SMMEs</label>
+    <label><input type="checkbox" name="collab" value="trade_shows"> Participate in Trade Shows</label>
+    <label><input type="checkbox" name="collab" value="research"> Contribute to Industry Research</label>
+    <label><input type="checkbox" name="collab" value="host_workshops"> Host Technical Workshops</label>
+    <label><input type="checkbox" name="collab" value="sponsor"> Sponsor ARIA Events</label>
+    <label><input type="checkbox" name="collab" value="other_collab" onchange="toggle('collab_other_field', this.checked)"> Other</label>
+  </div>
+  <div id="collab_other_field" class="conditional">
+    <div class="conditional-inner">
+      <div class="field-row"><label>Please specify</label><input type="text" name="collab_other" placeholder="Describe collaboration interest"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: EXPORT ACTIVITIES -->
+<div class="form-section" id="section-7">
+  <div class="section-heading"><span class="section-num">7</span> Export Activities</div>
+  <div class="subsection-label">Are you an existing exporter? *</div>
+  <div class="radio-row">
+    <label><input type="radio" name="exports" value="yes" onchange="toggle('export_detail', true)"> Yes</label>
+    <label><input type="radio" name="exports" value="no" onchange="toggle('export_detail', false)"> No</label>
+  </div>
+  <div class="conditional" id="export_detail">
+    <div class="conditional-inner">
+      <div class="field-row"><label>Exporter Registration No.</label><input type="text" name="export_reg" placeholder="If known"></div>
+      <div class="subsection-label" style="margin-top:14px;">Export Destinations</div>
+      <p class="subsection-note">Provide information for your top export destinations.</p>
+      <table class="export-table">
+        <thead><tr><th>#</th><th>Country</th><th>Products / Services Exported</th><th>Years Active</th><th>Est. Annual Value (ZAR)</th><th>Channel</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><input type="text" name="exp_c1"></td><td><input type="text" name="exp_p1" placeholder="e.g. Rolling stock components"></td><td><input type="number" name="exp_y1" min="0" style="width:50px"></td><td><input type="text" name="exp_v1" placeholder="e.g. R5M"></td><td><select name="exp_ch1"><option value="">Select...</option><option>Direct</option><option>Agent</option><option>Distributor</option><option>Joint Venture</option></select></td></tr>
+          <tr><td>2</td><td><input type="text" name="exp_c2"></td><td><input type="text" name="exp_p2"></td><td><input type="number" name="exp_y2" min="0" style="width:50px"></td><td><input type="text" name="exp_v2" placeholder="e.g. R5M"></td><td><select name="exp_ch2"><option value="">Select...</option><option>Direct</option><option>Agent</option><option>Distributor</option><option>Joint Venture</option></select></td></tr>
+          <tr><td>3</td><td><input type="text" name="exp_c3"></td><td><input type="text" name="exp_p3"></td><td><input type="number" name="exp_y3" min="0" style="width:50px"></td><td><input type="text" name="exp_v3" placeholder="e.g. R5M"></td><td><select name="exp_ch3"><option value="">Select...</option><option>Direct</option><option>Agent</option><option>Distributor</option><option>Joint Venture</option></select></td></tr>
+          <tr><td>4</td><td><input type="text" name="exp_c4"></td><td><input type="text" name="exp_p4"></td><td><input type="number" name=" exp_y4" min="0" style="width:50px"></td><td><input type="text" name="exp_v4" placeholder="e.g. R5M"></td><td><select name="exp_ch4"><option value="">Select...</option><option>Direct</option><option>Agent</option><option>Distributor</option><option>Joint Venture</option></select></td></tr>
+          <tr><td>5</td><td><input type="text" name="exp_c5"></td><td><input type="text" name="exp_p5"></td><td><input type="number" name="exp_y5" min="0" style="width:50px"></td><td><input type="text" name="exp_v5" placeholder="e.g. R5M"></td><td><select name="exp_ch5"><option value="">Select...</option><option>Direct</option><option>Agent</option><option>Distributor</option><option>Joint Venture</option></select></td></tr>
+        </tbody>
+      </table>
+      <div class="subsection-label">Export Challenges (tick all applicable)</div>
+      <div class="check-grid">
+        <label><input type="checkbox" name="exp_ch" value="logistics"> Logistics / Shipping</label>
+        <label><input type="checkbox" name="exp_ch" value="customs"> Customs / Documentation</label>
+        <label><input type="checkbox" name="exp_ch" value="market_access"> Market Access / Entry</label>
+        <label><input type="checkbox" name="exp_ch" value="currency"> Currency Fluctuations</label>
+        <label><input type="checkbox" name="exp_ch" value="compliance"> Compliance / Standards</label>
+        <label><input type="checkbox" name="exp_ch" value="partners"> Finding Partners / Agents</label>
+        <label><input type="checkbox" name="exp_ch" value="trade_finance"> Trade Finance</label>
+        <label><input type="checkbox" name="exp_ch" value="other_exp"> Other</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 8: BUSA -->
+<div class="form-section" id="section-8">
+  <div class="section-heading"><span class="section-num">8</span> BUSA Committee Participation</div>
+  <p style="font-size:12.5px;color:var(--mid);margin:-8px 0 4px;">As an ARIA member, you may participate in Business Unity South Africa (BUSA) structures through ARIA's membership. BUSA is the principal representative of organised business in South Africa and the main avenue through which business communicates, develops policy positions, and influences government.</p>
+  <p style="font-size:12px;color:var(--mid);margin:0 0 16px;font-style:italic;">Each member may nominate one principal representative and one alternate to each structure. ARIA will coordinate the formal BUSA nomination process on your behalf. This section captures your participation interests for ARIA's records.</p>
+  <div style="border-left:0.75px solid var(--green);padding:14px 18px;margin:-8px 0 18px;font-size:13px;line-height:1.7;color:var(--text);">
+    <strong style="color:var(--green);display:block;margin-bottom:6px;">Committee and External Representation Participation</strong>
+    ARIA welcomes member participation in its committees and in external bodies such as BUSA and the BBC. Participation enriches our collective voice and strengthens the industry's representation at the highest levels.
+    <ol style="margin:10px 0 0 18px;display:grid;gap:5px;">
+      <li>Submission of a nomination is the first step in the participation process. Appointments are confirmed by ARIA following an assessment of available positions, member standing, and nominee suitability.</li>
+      <li>ARIA coordinates nominations to external bodies on behalf of its members. Placement is subject to the rules and availability of the relevant external body and is not guaranteed.</li>
+      <li>Participation is open to members who are current on their membership obligations. ARIA may review participation where a member's standing changes.</li>
+      <li>Where a member representative participates in an external body through ARIA's membership, they are expected to represent the broader interests of the rail industry and to keep ARIA informed of relevant developments.</li>
+      <li>ARIA may from time to time review committee composition to ensure broad and effective industry representation.</li>
+      <li>Personal information submitted in this section will be used solely for membership administration and representation coordination, in accordance with POPIA.</li>
+      <li>These terms are read alongside the ARIA Memorandum of Incorporation.</li>
+    </ol>
+  </div>
+  <div class="policy-panel busa">
+    <div class="policy-panel-title">Standing Committees</div>
+    <p class="policy-panel-desc">New BUSA members nominate a principal and alternate to each standing committee. Tick all that apply.</p>
+    <div class="subsection-label" style="margin-top:10px;">Economic Policy Standing Committee (Econpol)</div>
+    <div class="two-col">
+      <div class="field-row"><label>Principal Representative</label><input type="text" name="busa_econpol_principal" placeholder="Full name"></div>
+      <div class="field-row"><label>Alternate Representative</label><input type="text" name="busa_econpol_alternate" placeholder="Full name"></div>
+    </div>
+    <div class="subsection-label">Social Policy Standing Committee (Socpol)</div>
+    <div class="two-col">
+      <div class="field-row"><label>Principal Representative</label><input type="text" name="busa_socpol_principal" placeholder="Full name"></div>
+      <div class="field-row"><label>Alternate Representative</label><input type="text" name="busa_socpol_alternate" placeholder="Full name"></div>
+    </div>
+    <div class="subsection-label">Joint Energy and Environment Policy Standing Committee</div>
+    <div class="two-col">
+      <div class="field-row"><label>Principal Representative</label><input type="text" name="busa_energy_env_principal" placeholder="Full name"></div>
+      <div class="field-row"><label>Alternate Representative</label><input type="text" name="busa_energy_env_alternate" placeholder="Full name"></div>
+    </div>
+  </div>
+  <div class="policy-panel busa" style="margin-top:14px;">
+    <div class="policy-panel-title">Subcommittees &amp; Working Groups</div>
+    <p class="policy-panel-desc">Tick the subcommittees where your company wishes to participate. Subcommittees report to Econpol or Socpol. Maximum two representatives (one principal, one alternate) per subcommittee.</p>
+    <div class="subsection-label" style="margin-top:10px;">Trade, Transport and Logistics Subcommittee</div>
+    <p class="subsection-note">Reports to Econpol. Select the workstream/s relevant to your business.</p>
+    <div class="check-grid" style="grid-template-columns:1fr 1fr 1fr;">
+      <label><input type="checkbox" name="busa_sub" value="trade"> Trade workstream</label>
+      <label><input type="checkbox" name="busa_sub" value="transport_logistics"> Transport &amp; Logistics workstream</label>
+      <label><input type="checkbox" name="busa_sub" value="sars_aeo"> SARS Private AEO Working Group</label>
+    </div>
+    <div class="two-col" style="margin-top:8px;">
+      <div class="field-row"><label>Principal Representative</label><input type="text" name="busa_ttl_principal" placeholder="Full name"></div>
+      <div class="field-row"><label>Alternate Representative</label><input type="text" name="busa_ttl_alternate" placeholder="Full name"></div>
+    </div>
+    <div class="subsection-label">Tax Subcommittee</div>
+    <div class="two-col">
+      <div class="field-row"><label>Principal Representative</label><input type="text" name="busa_tax_principal" placeholder="Full name"></div>
+      <div class="field-row"><label>Alternate Representative</label><input type="text" name="busa_tax_alternate" placeholder="Full name"></div>
+    </div>
+    <div class="subsection-label">SME Subcommittee</div>
+    <div class="two-col">
+      <div class="field-row"><label>Principal Representative</label><input type="text" name="busa_sme_principal" placeholder="Full name"></div>
+      <div class="field-row"><label>Alternate Representative</label><input type="text" name="busa_sme_alternate" placeholder="Full name"></div>
+    </div>
+    <div class="subsection-label">Energy Subcommittee</div>
+    <div class="two-col">
+      <div class="field-row"><label>Principal Representative</label><input type="text" name="busa_energy_principal" placeholder="Full name"></div>
+      <div class="field-row"><label>Alternate Representative</label><input type="text" name="busa_energy_alternate" placeholder="Full name"></div>
+    </div>
+    <div class="subsection-label">Environment Subcommittee</div>
+    <div class="two-col">
+      <div class="field-row"><label>Principal Representative</label><input type="text" name="busa_env_principal" placeholder="Full name"></div>
+      <div class="field-row"><label>Alternate Representative</label><input type="text" name="busa_env_alternate" placeholder="Full name"></div>
+    </div>
+    <div class="subsection-label">Education and Training Subcommittee</div>
+    <div class="two-col">
+      <div class="field-row"><label>Principal Representative</label><input type="text" name="busa_edtrain_principal" placeholder="Full name"></div>
+      <div class="field-row"><label>Alternate Representative</label><input type="text" name="busa_edtrain_alternate" placeholder="Full name"></div>
+    </div>
+    <div class="subsection-label">Health Subcommittee</div>
+    <div class="two-col">
+      <div class="field-row"><label>Principal Representative</label><input type="text" name="busa_health_principal" placeholder="Full name"></div>
+      <div class="field-row"><label>Alternate Representative</label><input type="text" name="busa_health_alternate" placeholder="Full name"></div>
+    </div>
+    <div class="subsection-label">SA Road Infrastructure Working Group</div>
+    <div class="two-col">
+      <div class="field-row"><label>Principal Representative</label><input type="text" name="busa_road_principal" placeholder="Full name"></div>
+      <div class="field-row"><label>Alternate Representative</label><input type="text" name="busa_road_alternate" placeholder="Full name"></div>
+    </div>
+  </div>
+  <div class="subsection-label" style="margin-top:16px;">Previous External Representation Experience</div>
+  <div class="field-row"><label>&nbsp;</label><textarea name="prev_representation" placeholder="Describe any prior experience on industry bodies, government forums, NEDLAC, parliamentary committees, etc."></textarea></div>
+</div>
+
+<!-- SECTION 9: BBC -->
+<div class="form-section" id="section-9">
+  <div class="section-heading"><span class="section-num">9</span> Black Business Council (BBC) Portfolio Committee Nomination</div>
+  <p style="font-size:12.5px;color:var(--mid);margin:-8px 0 4px;">As an ARIA member, you may nominate a representative to a BBC Portfolio Committee through ARIA's membership. The BBC operates a portfolio committee model — each nomination is for a specific named committee.</p>
+  <p style="font-size:12px;color:var(--mid);margin:0 0 16px;font-style:italic;">Consent from the nominee is required before submission. ARIA will coordinate the formal BBC nomination process upon receipt of this form.</p>
+  <div style="border-left:0.75px solid var(--green);padding:14px 18px;margin:-8px 0 18px;font-size:13px;line-height:1.7;color:var(--text);">
+    <strong style="color:var(--green);display:block;margin-bottom:6px;">Committee and External Representation Participation</strong>
+    ARIA welcomes member participation in its committees and in external bodies such as BUSA and the BBC. Participation enriches our collective voice and strengthens the industry's representation at the highest levels.
+    <ol style="margin:10px 0 0 18px;display:grid;gap:5px;">
+      <li>Submission of a nomination is the first step in the participation process. Appointments are confirmed by ARIA following an assessment of available positions, member standing, and nominee suitability.</li>
+      <li>ARIA coordinates nominations to external bodies on behalf of its members. Placement is subject to the rules and availability of the relevant external body and is not guaranteed.</li>
+      <li>Participation is open to members who are current on their membership obligations. ARIA may review participation where a member's standing changes.</li>
+      <li>Where a member representative participates in an external body through ARIA's membership, they are expected to represent the broader interests of the rail industry and to keep ARIA informed of relevant developments.</li>
+      <li>ARIA may from time to time review committee composition to ensure broad and effective industry representation.</li>
+      <li>Personal information submitted in this section will be used solely for membership administration and representation coordination, in accordance with POPIA.</li>
+      <li>These terms are read alongside the ARIA Memorandum of Incorporation.</li>
+    </ol>
+  </div>
+  <div class="policy-panel bbc">
+    <div class="policy-panel-title">Part A — Nominator Details</div>
+    <p class="policy-panel-desc">Details of the person submitting this nomination on behalf of the company.</p>
+    <div class="two-col">
+      <div class="field-row"><label>Title</label>
+        <select name="bbc_nominator_title">
+          <option value="">Select...</option>
+          <option>Mr</option><option>Ms</option><option>Mrs</option><option>Dr</option><option>Prof</option>
+        </select>
+      </div>
+      <div class="field-row"><label>Full Name &amp; Surname</label><input type="text" name="bbc_nominator_name" placeholder="Name Surname"></div>
+    </div>
+  </div>
+  <div class="policy-panel bbc" style="margin-top:14px;">
+    <div class="policy-panel-title">Part B — Nominee Details</div>
+    <p class="policy-panel-desc">Details of the person being nominated to serve on the BBC Portfolio Committee.</p>
+    <div class="two-col">
+      <div class="field-row"><label>Title</label>
+        <select name="bbc_nominee_title">
+          <option value="">Select...</option>
+          <option>Mr</option><option>Ms</option><option>Mrs</option><option>Dr</option><option>Prof</option>
+        </select>
+      </div>
+      <div class="field-row"><label>Full Name &amp; Surname</label><input type="text" name="bbc_nominee_name" placeholder="Name Surname"></div>
+    </div>
+    <div class="two-col">
+      <div class="field-row"><label>Email Address</label><input type="email" name="bbc_nominee_email"></div>
+      <div class="field-row"><label>Contact Number</label><input type="tel" name="bbc_nominee_tel"></div>
+    </div>
+    <div class="subsection-label" style="margin-top:10px;">Selected Portfolio Committee (tick one)</div>
+    <div class="check-grid" style="grid-template-columns:repeat(auto-fill, minmax(210px,1fr));">
+      <label><input type="radio" name="bbc_committee" value="economic_transformation"> Economic Transformation</label>
+      <label><input type="radio" name="bbc_committee" value="agriculture"> Agriculture &amp; Land Reform</label>
+      <label><input type="radio" name="bbc_committee" value="smme"> SMME Development</label>
+      <label><input type="radio" name="bbc_committee" value="education_skills"> Education &amp; Skills Development</label>
+      <label><input type="radio" name="bbc_committee" value="financial_services"> Financial Services</label>
+      <label><input type="radio" name="bbc_committee" value="infrastructure"> Infrastructure Development</label>
+      <label><input type="radio" name="bbc_committee" value="transport_aviation"> Transport &amp; Aviation</label>
+      <label><input type="radio" name="bbc_committee" value="manufacturing"> Manufacturing</label>
+      <label><input type="radio" name="bbc_committee" value="ict"> ICT</label>
+      <label><input type="radio" name="bbc_committee" value="international_trade"> International Trade Relations</label>
+      <label><input type="radio" name="bbc_committee" value="youth"> Youth Development</label>
+      <label><input type="radio" name="bbc_committee" value="health"> Health Care</label>
+      <label><input type="radio" name="bbc_committee" value="gender"> Gender Transformation</label>
+      <label><input type="radio" name="bbc_committee" value="mining"> Mining</label>
+      <label><input type="radio" name="bbc_committee" value="township_economy"> Township Economy</label>
+      <label><input type="radio" name="bbc_committee" value="climate_change"> Climate Change</label>
+      <label><input type="radio" name="bbc_committee" value="property_retail"> Property &amp; Retail</label>
+    </div>
+    <div class="subsection-label" style="margin-top:14px;">Nominee Consent</div>
+    <div class="radio-row">
+      <label><input type="radio" name="bbc_consent" value="yes"> Yes — consent obtained from nominee</label>
+      <label><input type="radio" name="bbc_consent" value="no"> No — consent not yet obtained</label>
+    </div>
+  </div>
+  <div class="policy-panel bbc" style="margin-top:14px;">
+    <div class="policy-panel-title">Part C — Selection Criteria</div>
+    <p class="policy-panel-desc">Confirm that the nominee meets the BBC's selection criteria.</p>
+    <div style="display:grid;gap:7px;margin-top:8px;">
+      <label class="decl-check"><input type="checkbox" name="bbc_criteria" value="availability"> Nominee is available to participate in committee meetings and activities</label>
+      <label class="decl-check"><input type="checkbox" name="bbc_criteria" value="policy"> Nominee will participate in policy formulation and contribute to policy dialogue</label>
+      <label class="decl-check"><input type="checkbox" name="bbc_criteria" value="commitment"> Nominee demonstrates commitment to serve on the committee (time and resources)</label>
+      <label class="decl-check"><input type="checkbox" name="bbc_criteria" value="knowledge"> Nominee has relevant industry / sector knowledge</label>
+    </div>
+  </div>
+  <div class="policy-panel bbc" style="margin-top:14px;">
+    <div class="policy-panel-title">Part D — Motivation for Nomination</div>
+    <p class="policy-panel-desc">Provide a brief motivation explaining why this nominee is suited to serve on the selected committee.</p>
+    <textarea name="bbc_motivation" style="width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:4px;font-family:inherit;font-size:12.5px;min-height:80px;resize:vertical;" placeholder="Describe the nominee's relevant expertise, experience, and reasons for this nomination"></textarea>
+  </div>
+  <div class="policy-panel bbc" style="margin-top:14px;">
+    <div class="policy-panel-title">Part E — Nominee Acceptance</div>
+    <p class="policy-panel-desc">The nominee accepts the nomination and agrees to abide by the BBC's terms of reference.</p>
+    <label class="decl-check"><input type="checkbox" name="bbc_acceptance"> I, the nominee named above, hereby accept the nomination to serve on the selected committee and will abide by the terms of reference stipulated by the BBC.</label>
+  </div>
+</div>
+
+<!-- SECTION 10: DECLARATION -->
+<div class="form-section" id="section-10">
+  <div class="section-heading"><span class="section-num">10</span> Declaration</div>
+  <div class="declaration-block">
+    We hereby apply for membership of the African Rail Industry Association and will return this form with our electronic company profile. By submitting this form, you confirm that the information is true and correct to the best of your knowledge. I, as the duly mandated principal, confirm that the information on this form is true and correct to the best of my knowledge. Accompanying this form is the resolution letter confirming my appointment as the mandated principal.
+  </div>
+  <label class="decl-check"><input type="checkbox" name="decl_tc" required=""> I have read and accept the Committee and External Representation Participation Terms and Conditions set out in Sections 8 and 9 of this form.</label>
+  <label class="decl-check"><input type="checkbox" name="decl_accurate" required=""> The information provided in this application is accurate and complete to the best of my knowledge.</label>
+  <label class="decl-check"><input type="checkbox" name="decl_docs" required=""> I confirm all required supporting documents are attached or will be submitted by email.</label>
+  <label class="decl-check"><input type="checkbox" name="decl_auth" required=""> The signatory below is duly authorised to represent the company in ARIA matters.</label>
+  <label class="decl-check"><input type="checkbox" name="decl_moi" required=""> I agree to abide by the ARIA Memorandum of Incorporation and membership terms.</label>
+  <label class="decl-check"><input type="checkbox" name="decl_popia"> I consent to ARIA processing this application data for membership administration purposes under POPIA.</label>
+  <div class="subsection-label" style="margin-top:18px;">Authorised Signatory</div>
+  <div class="two-col">
+    <div class="field-row"><label class="req">Full Name</label><input type="text" name="sig_name" required=""></div>
+    <div class="field-row"><label class="req">Designation</label><input type="text" name="sig_designation" required=""></div>
+    <div class="field-row"><label class="req">Date</label><input type="date" name="sig_date" required=""></div>
+    <div class="field-row"><label class="req">Signature / Type full name</label><input type="text" name="sig_text" required="" placeholder="Type full name to confirm"></div>
+  </div>
+  <div class="subsection-label" style="margin-top:20px;">MOI Compliance Declarations</div>
+  <p class="subsection-note">The following declarations are required by the ARIA Memorandum of Incorporation.</p>
+  <label class="decl-check"><input type="checkbox" name="decl_annual_financials">
+    <strong>Annual Financial Statements (Clause 13.4) — Optional, pending Board confirmation:</strong> I confirm that the organisation undertakes to submit Annual Financial Statements or auditors' written confirmation of turnover to ARIA by no later than 28 February of each year, for the purpose of determining the annual membership fee.
+  </label>
+  <label class="decl-check"><input type="checkbox" name="decl_auto_renewal" required="">
+    <strong>Automatic Annual Renewal (Annexure D, Part A):</strong> I confirm that the organisation accepts automatic annual membership renewal. Termination of membership will be carried out in accordance with the ARIA MOI, including providing 60 Business Days' written notice before the financial year end.
+  </label>
+  <label class="decl-check"><input type="checkbox" name="decl_anti_corruption" required="">
+    <strong>Anti-Corruption (Clause 34):</strong> I confirm that the organisation and its representatives will not engage in any form of corruption or bribery of any person, including designated public officials, and will not act in contravention of any legislation prohibiting such conduct. The organisation acknowledges that any contravention of this obligation is grounds for termination of membership.
+  </label>
+  <label class="decl-check"><input type="checkbox" name="decl_incorporated_sa" required="">
+    <strong>Legal Standing (Annexure D, Part A):</strong> I confirm that the organisation is a legally established and incorporated company in the Republic of South Africa, and that membership of the Company is sought on this basis.
+  </label>
+  <div class="subsection-label" style="margin-top:20px;">Checklist — Required Documents</div>
+  <label class="doc-item"><input type="checkbox" name="doc_bbbee"> Valid B-BBEE Certificate (or sworn affidavit for EMEs) <span class="doc-badge required">Required</span></label>
+  <label class="doc-item"><input type="checkbox" name="doc_profile"> Electronic Company Profile <span class="doc-badge required">Required</span></label>
+  <label class="doc-item"><input type="checkbox" name="doc_appointment"> Letter of Appointment for company representative <span class="doc-badge required">Required</span></label>
+  <label class="doc-item"><input type="checkbox" name="doc_cipc"> CIPC Company Registration Certificate <span class="doc-badge required">Required</span></label>
+  <p style="font-size:12px;color:var(--mid);margin:14px 0 0;">Return the completed form and all supporting documents to <strong><a href="/cdn-cgi/l/email-protection#e980878f86a9889b8088c7869b8ec79388"><span class="__cf_email__" data-cfemail="b5dcdbd3daf5d4c7dcd49bdac7d29bcfd4">[email&#160;protected]</span></a></strong> and <strong><a href="/cdn-cgi/l/email-protection#b7dad2dad5d2c5c4dfdec7f7d6c5ded699d8c5d099cdd6"><span class="__cf_email__" data-cfemail="274a424a454255544f4e576746554e4609485540095d46">[email&#160;protected]</span></a></strong>, with blind copy to <strong><a href="/cdn-cgi/l/email-protection#c6a4a9a7b4a286a7b4afa7e8a9b4a1e8bca7"><span class="__cf_email__" data-cfemail="97f5f8f6e5f3d7f6e5fef6b9f8e5f0b9edf6">[email&#160;protected]</span></a></strong></p>
+  <div class="office-use">
+    <h4>For Office Use Only</h4>
+    <div class="office-grid">
+      <div class="office-field"><label>Date Received</label><div class="office-field-line"></div></div>
+      <div class="office-field"><label>Received By</label><div class="office-field-line"></div></div>
+      <div class="office-field"><label>Board Approval Date</label><div class="office-field-line"></div></div>
+      <div class="office-field"><label>Membership Number</label><div class="office-field-line"></div></div>
+      <div class="office-field"><label>Invoice No.</label><div class="office-field-line"></div></div>
+      <div class="office-field"><label>Fee Tier</label><div class="office-field-line"></div></div>
+    </div>
+    <div class="office-status" style="margin-top:10px;">
+      <label>Status:</label>
+      <label><input type="radio" name="office_status"> Approved</label>
+      <label><input type="radio" name="office_status"> Pending</label>
+      <label><input type="radio" name="office_status"> Rejected</label>
+      &nbsp;&nbsp;<label>Docs Complete:</label>
+      <label><input type="radio" name="office_docs"> Yes</label>
+      <label><input type="radio" name="office_docs"> No</label>
+    </div>
+  </div>
+</div>
+
+</form>
+
+<!-- SUBMIT ROW -->
+<div class="submit-row">
+  <p class="submit-note">Submit to <strong><a href="/cdn-cgi/l/email-protection#056c6b636a4564776c642b6a77622b7f64"><span class="__cf_email__" data-cfemail="e1888f878ea180938880cf8e9386cf9b80">[email&#160;protected]</span></a></strong> and <strong><a href="/cdn-cgi/l/email-protection#6e030b030c0b1c1d06071e2e0f1c070f40011c0940140f"><span class="__cf_email__" data-cfemail="bbd6ded6d9dec9c8d3d2cbfbdac9d2da95d4c9dc95c1da">[email&#160;protected]</span></a></strong> &nbsp;|&nbsp; BCC: <strong><a href="/cdn-cgi/l/email-protection#eb89848a998fab8a99828ac584998cc5918a"><span class="__cf_email__" data-cfemail="294b46485b4d69485b404807465b4e075348">[email&#160;protected]</span></a></strong> &nbsp;|&nbsp; 35th Floor, Carlton Towers, 150 Commissioner Street, Johannesburg, 2001 &nbsp;|&nbsp; Tel: 011 468 1630</p>
+  <div class="btn-group">
+    <button type="button" class="btn btn-outline" onclick="window.print()">Print Form</button>
+    <button type="button" class="btn btn-gold" onclick="saveDraft()">Save Draft</button>
+    <button type="button" class="btn btn-primary" onclick="submitForm()">Submit Application</button>
+  </div>
+</div>
+
+<footer class="form-footer">
+  <span><strong>African Rail Industry Association</strong> &nbsp;|&nbsp; DTIC Rail Transport Equipment Export Council &nbsp;|&nbsp; MOI Clause 12.9 applies</span>
+  <span><a href="/cdn-cgi/l/email-protection#0861666e6748697a616926677a6f267269"><span class="__cf_email__" data-cfemail="91f8fff7fed1f0e3f8f0bffee3f6bfebf0">[email&#160;protected]</span></a> &nbsp;|&nbsp; <a href="https://www.aria.org.za/" target="_blank">www.aria.org.za</a></span>
+</footer>
+
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+function toggleChallenge(detailId, cb) {
+  const detail = document.getElementById(detailId);
+  const sevGroup = document.getElementById(detailId.replace('_detail','_sev_group'));
+  if (cb.checked) {
+    detail.classList.add('show');
+    if (sevGroup) sevGroup.style.display = 'flex';
+  } else {
+    detail.classList.remove('show');
+    if (sevGroup) sevGroup.style.display = 'none';
+  }
+}
+
+function setSev(fieldName, value, btn) {
+  const input = btn.closest('.severity-group').querySelector('input[name="' + fieldName + '"]');
+  if (input) input.value = value;
+  btn.closest('.severity-group').querySelectorAll('.sev-btn').forEach(b => {
+    b.classList.toggle('active', b === btn);
+  });
+}
+
+function togglePostal(cb) {
+  const field = document.getElementById('postalField');
+  field.disabled = cb.checked;
+  field.style.background = cb.checked ? '#f0f0f0' : 'white';
+  field.style.color = cb.checked ? '#999' : 'inherit';
+  if (cb.checked) field.value = 'Same as physical address';
+  else field.value = '';
+}
+
+function updateFee(val) {
+  const d = document.getElementById('feeDisplay');
+  if (val === 'SOE') {
+    d.classList.add('visible');
+    document.getElementById('feeBase').textContent = 'Annual Subscription: Contact ARIA Office';
+    document.getElementById('feeVat').textContent = '';
+    document.getElementById('feeTotal').textContent = '';
+  } else {
+    const n = parseInt(val);
+    d.classList.add('visible');
+    document.getElementById('feeBase').textContent = 'Annual Subscription (excl. VAT): R' + n.toLocaleString();
+    document.getElementById('feeVat').textContent = 'VAT (15%): R' + Math.round(n * 0.15).toLocaleString();
+    document.getElementById('feeTotal').textContent = 'Total Due: R' + Math.round(n * 1.15).toLocaleString();
+  }
+}
+
+function checkMfg() {
+  const mfg = ['OEM','Component','Assembly','Manufacturer','Maintenance'];
+  const checked = [...document.querySelectorAll('input[name="btype"]')].some(b => mfg.includes(b.value) && b.checked);
+  document.getElementById('sec4_fields').classList.toggle('show', checked);
+  document.getElementById('sec4_placeholder').style.display = checked ? 'none' : 'block';
+}
+
+function toggle(id, show) {
+  document.getElementById(id).classList.toggle('show', show);
+}
+
+function saveDraft() {
+  const form = document.getElementById('ariaForm');
+  const data = {};
+  new FormData(form).forEach((v, k) => {
+    data[k] = data[k] ? (Array.isArray(data[k]) ? [...data[k], v] : [data[k], v]) : v;
+  });
+  sessionStorage.setItem('ariaDraft', JSON.stringify(data));
+  alert('Draft saved to this browser session.');
+}
+
+function submitForm() {
+  const form = document.getElementById('ariaForm');
+  const required = form.querySelectorAll('[required]');
+  let firstInvalid = null;
+  required.forEach(el => {
+    el.style.borderColor = '';
+    if (!el.value.trim()) {
+      el.style.borderColor = '#8B1A1A';
+      if (!firstInvalid) firstInvalid = el;
+    }
+  });
+
+  const reqChecks = ['decl_tc','decl_accurate','decl_docs','decl_auth','decl_moi','decl_auto_renewal','decl_anti_corruption','decl_incorporated_sa'];
+  reqChecks.forEach(name => {
+    const el = form.querySelector('[name="' + name + '"]');
+    if (el && !el.checked) {
+      el.parentElement.style.color = '#8B1A1A';
+      if (!firstInvalid) firstInvalid = el;
+    } else if (el) {
+      el.parentElement.style.color = '';
+    }
+  });
+
+  const sectorChecked = form.querySelectorAll('input[name="sector"]:checked').length > 0;
+  const sectorGroup = document.querySelector('#section-3 .check-grid');
+  if (!sectorChecked) {
+    if (sectorGroup) sectorGroup.style.outline = '2px solid #8B1A1A';
+    if (!firstInvalid) firstInvalid = form.querySelector('input[name="sector"]');
+  } else {
+    if (sectorGroup) sectorGroup.style.outline = '';
+  }
+
+  const btypeChecked = form.querySelectorAll('input[name="btype"]:checked').length > 0;
+  const btypeGroup = document.querySelectorAll('#section-3 .check-grid')[1];
+  if (!btypeChecked) {
+    if (btypeGroup) btypeGroup.style.outline = '2px solid #8B1A1A';
+    if (!firstInvalid) firstInvalid = form.querySelector('input[name="btype"]');
+  } else {
+    if (btypeGroup) btypeGroup.style.outline = '';
+  }
+
+  const exportsSel = form.querySelector('input[name="exports"]:checked');
+  const exportsGroup = document.querySelector('#section-7 .radio-row');
+  if (!exportsSel) {
+    if (exportsGroup) exportsGroup.style.outline = '2px solid #8B1A1A';
+    if (!firstInvalid) firstInvalid = form.querySelector('input[name="exports"]');
+  } else {
+    if (exportsGroup) exportsGroup.style.outline = '';
+  }
+
+  const biSel = form.querySelector('input[name="bi_programme"]:checked');
+  const biGroup = document.querySelector('#section-5 .radio-row');
+  if (!biSel) {
+    if (biGroup) biGroup.style.outline = '2px solid #8B1A1A';
+    if (!firstInvalid) firstInvalid = form.querySelector('input[name="bi_programme"]');
+  } else {
+    if (biGroup) biGroup.style.outline = '';
+  }
+
+  const entSel = form.querySelector('input[name="enterprise_size"]:checked');
+  const entGroups = document.querySelectorAll('#section-5 .radio-row');
+  const entGroup = entGroups[entGroups.length - 1];
+  if (!entSel) {
+    if (entGroup) entGroup.style.outline = '2px solid #8B1A1A';
+    if (!firstInvalid) firstInvalid = form.querySelector('input[name="enterprise_size"]');
+  } else {
+    if (entGroup) entGroup.style.outline = '';
+  }
+
+  const feeSel = form.querySelector('input[name="fee_tier"]:checked');
+  if (!feeSel) {
+    const feeSection = document.getElementById('section-fee');
+    if (feeSection) feeSection.style.outline = '2px solid #8B1A1A';
+    if (!firstInvalid) firstInvalid = document.querySelector('input[name="fee_tier"]');
+  } else {
+    const feeSection = document.getElementById('section-fee');
+    if (feeSection) feeSection.style.outline = '';
+  }
+
+  if (firstInvalid) {
+    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    alert('Please complete all required fields marked with * before submitting.');
+    return;
+  }
+
+  var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbw8sjx62XlXNIdE9E_As5r2HjcbdedTb5Pj3URghTk7qYpbySyTKidLA-MPcshpi1O0/exec';
+
+  if (!WEB_APP_URL || WEB_APP_URL.indexOf('PASTE_YOUR') === 0) {
+    alert('Form backend not yet configured.\n\nPlease email your application to:\ninfo@aria.org.za');
+    return;
+  }
+
+  var submitBtn = document.querySelector('.btn-primary');
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Submitting...'; }
+
+  var formData = {};
+  new FormData(form).forEach(function(v, k) {
+    if (formData[k]) {
+      if (!Array.isArray(formData[k])) formData[k] = [formData[k]];
+      formData[k].push(v);
+    } else {
+      formData[k] = v;
+    }
+  });
+
+  fetch(WEB_APP_URL, {
+    method: 'POST',
+    mode: 'cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(formData)
+  })
+  .then(function() {
+    sessionStorage.removeItem('ariaDraft');
+    document.querySelector('.page-wrapper').innerHTML =
+      '<div style="padding:60px 40px;text-align:center;font-family:Calibri,Arial,sans-serif;">'
+      + '<div style="background:#004225;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">'
+      + '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+      + '</div>'
+      + '<h2 style="color:#004225;font-size:22px;margin-bottom:12px;">Application Submitted</h2>'
+      + '<p style="color:#333;font-size:14px;max-width:480px;margin:0 auto 16px;line-height:1.7;">'
+      + 'Thank you. ARIA has received your membership application for <strong>' + (formData['reg_name'] || 'your organisation') + '</strong>. '
+      + 'A confirmation email has been sent to ' + (formData['p1_email'] || 'your primary contact email') + '.</p>'
+      + '<p style="color:#666;font-size:13px;max-width:480px;margin:0 auto;line-height:1.7;">'
+      + 'Please email your supporting documents to <strong>info@aria.org.za</strong>. '
+      + 'We will review your application and contact you within 5 business days.</p>'
+      + '<div style="margin-top:32px;padding-top:24px;border-top:1px solid #eee;color:#999;font-size:12px;">'
+      + 'African Rail Industry Association | 011 468 1630 | info@aria.
